@@ -10,8 +10,10 @@ OR!
 Appschadueler --runs--> urlwatch get the jobs from db and do them
 this way aps has no idea about the jobs, so it has to invoke uw every minutes (bad performance)
 
-job structure is as follows:
- `Job {
+job structure is as follows: **for now we will use asp mongodb JobSotre as db for jobs** each has an attribute 
+associated with the user ID 
+ `
+ Job {
     ID : jobID
     userID : userID
     url : url
@@ -22,7 +24,8 @@ job structure is as follows:
         remove(),
     }
     
- }`
+ }
+ `
 appschadueler 
 
 ### TODO
