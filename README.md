@@ -10,25 +10,21 @@ OR!
 Appschadueler --runs--> urlwatch get the jobs from db and do them
 this way aps has no idea about the jobs, so it has to invoke uw every minutes (bad performance)
 
-job structure is as follows: **for now we will use asp mongodb JobSotre as db for jobs** each has an attribute 
-associated with the user ID 
- `
- Job {
-    ID : jobID
-    userID : userID
-    url : url
-    state : state
-    repeat :
-    Methods : {
-        add(schach),
-        remove(),
-    }
-    
- }
- `
-appschadueler 
+### Job creation process 
+ 1. user request a job creation 
+ 2. `job_create` handler get the request and pass it to the `job_creator`
+ 3. `job_creator` validate the job insert it into db,  and pass it to `APS`
+     along with the generated ID, so that urlwatch can be called with the ID
+ 4.  `aps` add the job to its storage and schaduele it 
 
-### TODO
+## DB
+ * Using mongoDB 
+   * Documents ---- Collections ---- 
+   * each doc has a unique _id acts as primary key
+   * if no _id is sepcified it will added on insert `ObjectID`
+ * apschudueler collection automaticaly takes care of jobs
+ * TODO: users collection should be implemented 
+## TODO
 - [ ] http server
 - [ ] foolan
 - [ ] bahman

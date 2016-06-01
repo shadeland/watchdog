@@ -33,11 +33,7 @@ def tick():
 def main():
     # Running APScheduler
     aps = TornadoScheduler()
-    aps.add_jobstore('mongodb', collection='example_jobs')
-    aps.remove_all_jobs()
-    aps.add_job(tick, 'interval', seconds=3)
-    aps.add_job(tick, 'interval', seconds=3)
-    aps.add_job(tick, 'interval', seconds=3)
+    aps.add_jobstore('mongodb', collection='url_jobs')
     aps.start()
     # Running server
     app = TornadoApplication()
