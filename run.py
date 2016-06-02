@@ -36,6 +36,7 @@ def main():
     aps.add_jobstore('mongodb', collection='url_jobs')
     aps.start()
     # Running server
+
     app = TornadoApplication()
     app.listen(options.port)
     tornado.ioloop.IOLoop.current().start()

@@ -52,6 +52,7 @@ def main():
     db_client = motor.motor_tornado.MotorClient()
     jc = JobCreator()
     jc.create_job("google.com", "1111", aps, db_client)
+
     # Running server
     app = TornadoApplication()
     app.listen(options.port)

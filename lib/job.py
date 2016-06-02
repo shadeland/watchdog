@@ -16,6 +16,8 @@ class Job:
 
 class JobCreator:
     """A singlethon that creates jobs and add them to data stores"""
+    # TODO aps and db_client should get init in the constructor so that we can have one global JobCreator object in application
+
     def create_job(self, url=None, usr_id=None, aps: TornadoScheduler = None, db_client: motor.MotorClient =None):
         """
         create job
