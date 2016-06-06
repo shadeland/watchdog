@@ -14,11 +14,17 @@ class Job:
     def get_asp(self):
         pass
 
+
+
 class JobCreator:
     """A singlethon that creates jobs and add them to data stores"""
-    # TODO aps and db_client should get init in the constructor so that we can have one global JobCreator object in application
+    # xTODO aps and db_client should get init in the constructor so that we can have one global JobCreator object in application
+    def __init__(self,aps: TornadoScheduler = None, db_client: motor.MotorClient =None):
+        self.aps = aps
+        self.db_client = db_client
 
-    def create_job(self, url=None, usr_id=None, aps: TornadoScheduler = None, db_client: motor.MotorClient =None):
+
+    def create_job(self, url=None, usr_id=None):
         """
         create job
         :param url: url of thre page to be watched
@@ -27,9 +33,7 @@ class JobCreator:
         :param db_client: points to global db_client
         :return: if succeeds returns
         """
-        self.aps = aps
-        self.db_client = db_client
-        self._add_job_uw(db_client, url = url, usr_id=usr_id)
+        self._add_job_uw(self.db_client, url = url, usr_id=usr_id)
         # self._add_job_aps(aps,wu_id)
 
     def _add_job_aps(self,uw_job_id):

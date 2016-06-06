@@ -50,8 +50,8 @@ def main():
     aps.start()
     aps.remove_all_jobs()
     db_client = motor.motor_tornado.MotorClient()
-    jc = JobCreator()
-    jc.create_job("google.com", "1111", aps, db_client)
+    jc = JobCreator(aps=aps,db_client=db_client)
+    settings['job_creator'] = jc
 
     # Running server
     app = TornadoApplication()
