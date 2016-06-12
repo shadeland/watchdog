@@ -4,16 +4,17 @@ import motor
 from apscheduler.schedulers.tornado import TornadoScheduler
 
 class Job:
-    def __init__(self, **kargs):
-        self.id = kargs['id']
-        self.usrId = kargs['usrID']
-        self.url = kargs['url']
-        self.createDate = kargs['createDate']
-        self.repeat = kargs['repeat']
+    # TODO, soon: use Schema
+    def __init__(self, **kwargs):
+        self._id = kwargs['id']
+        self.url = kwargs['url']
+        self.filter = kwargs
+        self.createDate = kwargs['create_date']
+        self.expire_date = kwargs['expire_date']
+        self.interval = kwargs['interval']
 
-    def get_asp(self):
+    def to_json(self):
         pass
-
 
 
 class JobCreator:
